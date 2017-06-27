@@ -165,6 +165,9 @@ namespace NewtonVR
         {
             base.BeginInteraction(hand);
 
+            
+
+
             StartingDrag = Rigidbody.drag;
             StartingAngularDrag = Rigidbody.angularDrag;
             Rigidbody.drag = 0;
