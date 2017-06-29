@@ -3,27 +3,40 @@ using System.Collections;
 
 public class ChangeColor : MonoBehaviour {
 	bool colorChangeCollision = false;
-	private SteamVR_Controller.Device controller {get { return SteamVR_Controller.Input((int)trackedObj.index);} }
-	private SteamVR_TrackedObject trackedObj;
-	// Use this for initialization
-	void Start () {
-		trackedObj = GetComponent<SteamVR_TrackedObject>();
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (controller == null) {
-			Debug.Log("Controller not initialized");
-		}
+	public Material[] material;
+	Renderer rend;
+		//Use this for initialization
+	void Start () {
+		rend = GetComponent<Renderer>();
+		rend.enabled = true;
+		rend.sharedMaterial = material[0];
+		//trackedObj = GetComponent<SteamVR_TrackedObject>();
 	}
 
-	private void onTriggerEnter(Collider collider) {
+	void Update() {
+		ChangeColorMethod ();
+	}
+
+	/*void OnCollisionEnter(Collision collision) {
+		Debug.Log ("THERE WAS A COLLISION YAY");
+		colorChangeCollision = true;
+		print("Collisiion");
+		//if (collision.gameObject.name == "Cube") {
+		//Destroy (this.gameObject);
+		//}
+	}
+	*/
+
+	void OnTriggerEnter(Collider collider) {
+		print("Collison");
 		colorChangeCollision = true;
 	}
 
 	void ChangeColorMethod() {
+		
 		if (colorChangeCollision) {
-			transform.GetComponent<Renderer>().material.color = Color.yellow;
+			rend.sharedMaterial = material[1];
 		}
 	}
 

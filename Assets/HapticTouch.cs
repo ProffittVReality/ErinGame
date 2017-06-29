@@ -19,11 +19,23 @@ public class HapticTouch : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter() {
+	/*void OnCollisionEnter(Collision other) {
+		if (other.gameObject.CompareTag("Ball")) {
+			hapticFlag = true;
+		}
+	}
+	*/
+
+	void OnTriggerEnter(Collider collider) {
+		print("Collison");
 		hapticFlag = true;
 	}
-
-	void OnTriggerExit() {
+	void OnTriggerExit(){
 		hapticFlag = false;
 	}
+	/*
+	void OnCollisionExit() {
+		hapticFlag = false;
+	}
+	*/
 }
